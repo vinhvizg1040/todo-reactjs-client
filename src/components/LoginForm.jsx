@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import * as Yup from 'yup';
 
-const SignupSchema = Yup.object().shape({
+const LoginSchema = Yup.object().shape({
     username: Yup.string()
         .min(2, 'Too Short!')
         .max(40, 'Too Long!')
@@ -24,7 +24,7 @@ function LoginForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        SignupSchema.validate(formData, { abortEarly: false })
+        LoginSchema.validate(formData, { abortEarly: false })
             .then(() => {
                 // Form is valid
                 console.log('Form is valid');
@@ -90,32 +90,34 @@ function LoginForm() {
                     </div>
                     <form className="space-y-8" onSubmit={handleSubmit}>
                         <div className="space-y-3 rounded-md shadow-sm">
-                            <div>
-                                <input className='bg-[#363636] focus:outline-none text-[#FFFFFF] text-lg p-1 text-start w-full h-full rounded-xl border-white border-2'
+                            <div className='rounded-xl border-white border-2 flex items-center bg-[#363636] px-2'>
+                                <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21.5001 2.15001C21.5001 0.967503 20.5326 0 19.3501 0H2.15001C0.967503 0 0 0.967503 0 2.15001V15.05C0 16.2325 0.967503 17.2001 2.15001 17.2001H19.3501C20.5326 17.2001 21.5001 16.2325 21.5001 15.05V2.15001ZM19.3501 2.15001L10.75 7.52502L2.15001 2.15001H19.3501ZM19.3501 15.05H2.15001V4.30001L10.75 9.67503L19.3501 4.30001V15.05Z" fill="#ADB0CD" />
+                                </svg>
+                                <input className='bg-[#363636] focus:outline-none text-[#FFFFFF] text-lg p-1 text-start w-full h-full'
                                     type='text' name='username' value={formData.username} onChange={handleInputChange} required placeholder="Username" />
                                 {formErrors.username && <span className="error text-sm italic text-red-500">{formErrors.username}</span>}
-
                             </div>
-                            <div>
-                                <input className='bg-[#363636] focus:outline-none text-[#FFFFFF] text-lg p-1 text-start w-full h-full rounded-xl border-white border-2'
+                            <div className='rounded-xl border-white border-2 flex items-center bg-[#363636] px-2'>
+                                <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.3178 12.3636L17.0451 14.0909L20.4996 10.6364L18.7723 8.90909" stroke="#ADB0CD" stroke-width="2.30303" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M10.3451 12.1546L20.4998 2" stroke="#ADB0CD" stroke-width="2.30303" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M6.68182 21C9.54366 21 11.8636 18.68 11.8636 15.8182C11.8636 12.9563 9.54366 10.6364 6.68182 10.6364C3.81998 10.6364 1.5 12.9563 1.5 15.8182C1.5 18.68 3.81998 21 6.68182 21Z" stroke="#ADB0CD" stroke-width="2.30303" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <input className='bg-[#363636] focus:outline-none text-[#FFFFFF] text-lg p-1 text-start w-full h-full'
                                     type="password" name='password' value={formData.password} onChange={handleInputChange} required placeholder="Password" />
                                 {formErrors.password && <span className="error text-sm italic text-red-500">{formErrors.password}</span>}
-
                             </div>
                         </div>
-
-
                         <div>
-                            <button type="submit" className="group relative flex w-full justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            <button type="submit" className="group relative flex w-full justify-center rounded-md bg-indigo-600 py-2 px-3 text-base font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 Sign in
                             </button>
                         </div>
                     </form>
-
                     <div className="flex items-center justify-center">
                         <a href="/#" className="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
                     </div>
-
                     <div className='flex items-center justify-center'>
                         <div className='bg-[#FFFF] w-3/4 h-px rounded-md'></div>
                         <p className='px-2'>OR</p>
@@ -130,7 +132,7 @@ function LoginForm() {
                                         <path d="M20.1407 18.6951L20.7843 14.5H16.764V11.7827C16.764 10.6386 17.3281 9.51836 19.1238 9.51836H20.9512V5.95096C20.9512 5.95096 19.2906 5.66493 17.7016 5.66493C14.3884 5.66493 12.2273 7.67507 12.2273 11.306V14.5H8.54869V18.6951H12.2273V28.8252C12.9662 28.9444 13.721 29 14.4917 29C15.2624 29 16.0172 28.9364 16.7561 28.8252V18.6951H20.1407Z" fill="#363636" />
                                     </svg>
                                 </span>
-                                Facebook
+                                <p className='ml-4'>Facebook</p>
                             </button>
                         </div>
                         <div className='w-36 p-2'>
@@ -142,9 +144,8 @@ function LoginForm() {
                                         <path d="M5.93863 16.4998C5.64782 15.6427 5.47952 14.7242 5.47952 13.7753C5.47952 12.8263 5.64782 11.908 5.92333 11.0509L5.91563 10.8683L1.6102 7.52467L1.46933 7.59168C0.535712 9.45902 0 11.556 0 13.7753C0 15.9947 0.535712 18.0915 1.46933 19.9589L5.93863 16.4998Z" fill="#FBBC05" />
                                         <path d="M13.7756 5.32643C16.3623 5.32643 18.1071 6.44376 19.1021 7.37748L22.9898 3.58159C20.6021 1.36225 17.4949 1.52588e-05 13.7756 1.52588e-05C8.38793 1.52588e-05 3.73492 3.09178 1.46967 7.59168L5.92367 11.0509C7.0411 7.72949 10.1329 5.32643 13.7756 5.32643Z" fill="#EB4335" />
                                     </svg>
-
                                 </span>
-                                Google
+                                <p className='ml-4'>Google</p>
                             </button>
                         </div>
                     </div>
