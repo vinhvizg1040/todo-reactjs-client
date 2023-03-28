@@ -4,13 +4,13 @@ import * as Yup from 'yup';
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string()
-        .min(2, 'Too Short!')
-        .max(40, 'Too Long!')
-        .required('Required'),
+        .min(2, 'username quá ngắn!')
+        .max(40, 'username quá dài!')
+        .required('Vui lòng nhập tên đăng nhập.'),
     password: Yup.string()
-        .min(8, 'Password must be at least 8 characters long')
-        .max(15, 'Too Long!')
-        .required('Required'),
+        .min(8, 'Mật khẩu phải chứa ít nhất 8 ký tự.')
+        .max(15, 'Mật khẩu không thể quá 15 ký tự')
+        .required('Vui lòng nhập mật khẩu.'),
 });
 
 function LoginForm() {

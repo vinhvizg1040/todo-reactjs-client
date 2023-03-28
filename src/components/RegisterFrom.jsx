@@ -5,22 +5,33 @@ import registerimage from '../assets/images/register-background.jpg'
 
 const RegisterSchema = Yup.object().shape({
     username: Yup.string()
-        .min(2, 'Too Short!')
-        .max(40, 'Too Long!')
-        .required('Required'),
+        .min(2, 'username quá ngắn!')
+        .max(40, 'username quá dài!')
+        .required('Vui lòng nhập tên đăng nhập.'),
     password: Yup.string()
-        .min(8, 'Password must be at least 8 characters long')
-        .max(15, 'Too Long!')
-        .required('Required'),
+        .min(8, 'Mật khẩu phải chứa ít nhất 8 ký tự.')
+        .max(15, 'Mật khẩu không thể quá 15 ký tự')
+        .required('Vui lòng nhập mật khẩu.'),
+    confirmPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Mật khẩu nhập lại không khớp.')
+        .required('Vui lòng nhập lại mật khẩu.'),
 });
 
 function RegisterForm() {
+
     const [formData, setFormData] = useState({
         username: '',
         password: '',
+        confirmPassword: '',
     });
 
-    const [formErrors, setFormErrors] = useState({});
+    const [errors, setFormErrors] = useState({});
+
+    // handle input change
+    const handleInputChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
+    };
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -36,24 +47,13 @@ function RegisterForm() {
                     .then(response => {
                         console.log(response)
 
-                        const role = response.data.role;
-                        if (role === 'admin') {
-                            const token = response.data.token;
-                            const username = response.data.username;
-                            localStorage.setItem('token', token);
-                            localStorage.setItem('username', username);
+                        const token = response.data.token;
+                        const username = response.data.username;
+                        localStorage.setItem('token', token);
+                        localStorage.setItem('username', username);
 
-                            // Log in successful, redirect to another page
-                            window.location.href = '/';
-                        } else if (role === 'user') {
-                            const token = response.data.token;
-                            const username = response.data.username;
-                            localStorage.setItem('token', token);
-                            localStorage.setItem('username', username);
-
-                            // Log in successful, redirect to another page
-                            window.location.href = '/Todo';
-                        }
+                        // Log in successful, redirect to another page
+                        window.location.href = '/Todo';
                     })
                     .catch(error => console.log(error));
 
@@ -70,11 +70,6 @@ function RegisterForm() {
             });
     }
 
-    // handle input change
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
-    };
 
     return (
         <>
@@ -99,7 +94,7 @@ function RegisterForm() {
                                         </svg>
                                         <input className='bg-[#363636] focus:outline-none text-[#FFFFFF] text-base p-1 text-start w-full h-full'
                                             type='text' name='username' value={formData.username} onChange={handleInputChange} required placeholder="Username" />
-                                        {formErrors.username && <span className="error text-sm italic text-red-500">{formErrors.username}</span>}
+                                        {errors.username && <span className="error text-sm italic text-red-500">{errors.username}</span>}
                                     </div>
                                     <div className='rounded-xl border-white  border-x border-y flex items-center bg-[#363636] px-2'>
                                         <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +104,7 @@ function RegisterForm() {
                                         </svg>
                                         <input className='bg-[#363636] focus:outline-none text-[#FFFFFF] text-base p-1 text-start w-full h-full'
                                             type="password" name='password' value={formData.password} onChange={handleInputChange} required placeholder="Password" />
-                                        {formErrors.password && <span className="error text-sm italic text-red-500">{formErrors.password}</span>}
+                                        {errors.password && <span className="error text-sm italic text-red-500">{errors.password}</span>}
                                     </div>
                                     <div className='rounded-xl border-white  border-x border-y flex items-center bg-[#363636] px-2'>
                                         <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,8 +113,8 @@ function RegisterForm() {
                                             <path d="M6.68182 21C9.54366 21 11.8636 18.68 11.8636 15.8182C11.8636 12.9563 9.54366 10.6364 6.68182 10.6364C3.81998 10.6364 1.5 12.9563 1.5 15.8182C1.5 18.68 3.81998 21 6.68182 21Z" stroke="#ADB0CD" stroke-width="2.30303" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                         <input className='bg-[#363636] focus:outline-none text-[#FFFFFF] text-base p-1 text-start w-full h-full'
-                                            type="password" name='password' value={formData.password} onChange={handleInputChange} required placeholder="Repeat Password" />
-                                        {formErrors.password && <span className="error text-sm italic text-red-500">{formErrors.password}</span>}
+                                            type="password" name='confirmPassword' value={formData.confirmPassword} onChange={handleInputChange} required placeholder="Repeat Password" />
+                                        {errors.confirmPassword && <span className="error text-sm italic text-red-500">{errors.confirmPassword}</span>}
                                     </div>
                                 </div>
                                 <div>
@@ -168,9 +163,9 @@ function RegisterForm() {
                         <a href='/#'>Don't have account? Sign Up</a>
                     </div>
                 </div>
-                
-                    <img className='bg-white w-full' src={registerimage} alt="" />
-                
+
+                <img className='bg-white w-full' src={registerimage} alt="" />
+
             </div>
         </>
     );
