@@ -78,13 +78,13 @@ function RegisterForm() {
                     <div className="flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
                         <div className="w-full max-w-md space-y-8 p-8 rounded-xl">
                             <div className='flex items-center justify-center'>
-                                <p className='text-2xl'>Logo</p>
+                                <p className='text-white font-bold text-2xl'>TodoList</p>
                             </div>
                             <div className='flex items-center justify-center'>
                                 <div className='bg-[#FFFF] w-3/4 h-px rounded-md'></div>
                             </div>
                             <div className='flex items-center justify-center'>
-                                <p className='text-2xl'>Login</p>
+                                <p className='font-bold text-2xl'>Login</p>
                             </div>
                             <form className="space-y-8" onSubmit={handleSubmit}>
                                 <div className="space-y-3 rounded-md shadow-sm">
@@ -98,9 +98,9 @@ function RegisterForm() {
                                     </div>
                                     <div className='rounded-xl border-white  border-x border-y flex items-center bg-[#363636] px-2'>
                                         <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M15.3178 12.3636L17.0451 14.0909L20.4996 10.6364L18.7723 8.90909" stroke="#ADB0CD" stroke-width="2.30303" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M10.3451 12.1546L20.4998 2" stroke="#ADB0CD" stroke-width="2.30303" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M6.68182 21C9.54366 21 11.8636 18.68 11.8636 15.8182C11.8636 12.9563 9.54366 10.6364 6.68182 10.6364C3.81998 10.6364 1.5 12.9563 1.5 15.8182C1.5 18.68 3.81998 21 6.68182 21Z" stroke="#ADB0CD" stroke-width="2.30303" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M15.3178 12.3636L17.0451 14.0909L20.4996 10.6364L18.7723 8.90909" stroke="#ADB0CD" stroke-width="2.30303" strokeLinecap="round" stroke-linejoin="round" />
+                                            <path d="M10.3451 12.1546L20.4998 2" stroke="#ADB0CD" stroke-width="2.30303" strokeLinecap="round" stroke-linejoin="round" />
+                                            <path d="M6.68182 21C9.54366 21 11.8636 18.68 11.8636 15.8182C11.8636 12.9563 9.54366 10.6364 6.68182 10.6364C3.81998 10.6364 1.5 12.9563 1.5 15.8182C1.5 18.68 3.81998 21 6.68182 21Z" stroke="#ADB0CD" stroke-width="2.30303" strokeLinecap="round" stroke-linejoin="round" />
                                         </svg>
                                         <input className='bg-[#363636] focus:outline-none text-[#FFFFFF] text-base p-1 text-start w-full h-full'
                                             type="password" name='password' value={formData.password} onChange={handleInputChange} required placeholder="Password" />
@@ -108,9 +108,9 @@ function RegisterForm() {
                                     </div>
                                     <div className='rounded-xl border-white  border-x border-y flex items-center bg-[#363636] px-2'>
                                         <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M15.3178 12.3636L17.0451 14.0909L20.4996 10.6364L18.7723 8.90909" stroke="#ADB0CD" stroke-width="2.30303" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M10.3451 12.1546L20.4998 2" stroke="#ADB0CD" stroke-width="2.30303" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M6.68182 21C9.54366 21 11.8636 18.68 11.8636 15.8182C11.8636 12.9563 9.54366 10.6364 6.68182 10.6364C3.81998 10.6364 1.5 12.9563 1.5 15.8182C1.5 18.68 3.81998 21 6.68182 21Z" stroke="#ADB0CD" stroke-width="2.30303" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M15.3178 12.3636L17.0451 14.0909L20.4996 10.6364L18.7723 8.90909" stroke="#ADB0CD" stroke-width="2.30303" strokeLinecap="round" stroke-linejoin="round" />
+                                            <path d="M10.3451 12.1546L20.4998 2" stroke="#ADB0CD" stroke-width="2.30303" strokeLinecap="round" stroke-linejoin="round" />
+                                            <path d="M6.68182 21C9.54366 21 11.8636 18.68 11.8636 15.8182C11.8636 12.9563 9.54366 10.6364 6.68182 10.6364C3.81998 10.6364 1.5 12.9563 1.5 15.8182C1.5 18.68 3.81998 21 6.68182 21Z" stroke="#ADB0CD" stroke-width="2.30303" strokeLinecap="round" stroke-linejoin="round" />
                                         </svg>
                                         <input className='bg-[#363636] focus:outline-none text-[#FFFFFF] text-base p-1 text-start w-full h-full'
                                             type="password" name='confirmPassword' value={formData.confirmPassword} onChange={handleInputChange} required placeholder="Repeat Password" />
