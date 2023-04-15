@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import instance from '../api/instance';
 import * as Yup from 'yup';
 
 const LoginSchema = Yup.object().shape({
@@ -25,13 +25,9 @@ function LoginForm() {
         event.preventDefault();
 
         LoginSchema.validate(formData, { abortEarly: false })
-            .then(() => {
-                // Form is valid
-                console.log('Form is valid');
+            .then( async () => {
                 // Send data to server
-
-
-                axios.post('http://localhost:3001/users/login', formData)
+                await instance.post('/users/login', formData)
                     .then(response => {
                         const role = response.data.role;
                         if (role === 'admin') {

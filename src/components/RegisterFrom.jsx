@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import instance from '../api/instance';
 import * as Yup from 'yup';
 import registerimage from '../assets/images/register-background.jpg'
 
@@ -37,16 +37,14 @@ function RegisterForm() {
         event.preventDefault();
 
         RegisterSchema.validate(formData, { abortEarly: false })
-            .then(() => {
+            .then(async () => {
                 // Form is valid
                 console.log('Form is valid');
                 // Send data to server
 
 
-                axios.post('http://localhost:3001/users/register', formData)
+                await instance.post('/users/register', formData)
                     .then(response => {
-                        console.log(response)
-
                         const token = response.data.token;
                         const username = response.data.username;
                         localStorage.setItem('token', token);
