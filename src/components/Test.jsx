@@ -1,12 +1,11 @@
 import React from 'react'
-import { useState } from 'react';
-import DatePicker from './DatePicker';
+import NavbarMenu from './NavbarMenu'
 
 function Test() {
     
     return (
         <>
-            {/* <DatePicker/> */}
+            <NavbarMenu/>
         </>
     )
 }

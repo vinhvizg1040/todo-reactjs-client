@@ -33,23 +33,23 @@ function LoginForm() {
 
                 axios.post('http://localhost:3001/users/login', formData)
                     .then(response => {
-                        console.log(response)
-
                         const role = response.data.role;
                         if (role === 'admin') {
                             const token = response.data.token;
                             const username = response.data.username;
+                            const userId = response.data.userId;
                             localStorage.setItem('token', token);
                             localStorage.setItem('username', username);
-
+                            localStorage.setItem('userId', userId);
                             // Log in successful, redirect to another page
                             window.location.href = '/';
                         } else if (role === 'user') {
                             const token = response.data.token;
                             const username = response.data.username;
+                            const userId = response.data.userId;
                             localStorage.setItem('token', token);
                             localStorage.setItem('username', username);
-
+                            localStorage.setItem('userId', userId);
                             // Log in successful, redirect to another page
                             window.location.href = '/Todo';
                         }
