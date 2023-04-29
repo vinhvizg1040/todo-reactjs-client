@@ -1,13 +1,14 @@
-import React from 'react'
-import NavbarMenu from './NavbarMenu'
+import React, { useEffect, useState } from 'react'
 
-function Test() {
+const Test = () => {
     
     return (
         <>
-            <NavbarMenu/>
+           
         </>
     )
-}
+};
+
+
 
 export default Test

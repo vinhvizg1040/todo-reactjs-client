@@ -43,7 +43,7 @@ function Todo() {
       <Navbar navHandle={navHandle}/>
       <div className="flex flex-row w-full h-full">
         {isShown ? <NavbarMenu hidden='w-full'/> : <NavbarMenu hidden='w-0'/>}
-        {toShown ? <TodoEditor hidden='leading-5'/> : <TodoEditor hidden='hidden'/>}
+        {toShown ? <TodoEditor hidden='leading-5'/> : <TodoEditor/>}
       </div>
     </div>
   )

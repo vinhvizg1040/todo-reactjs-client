@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import BoardItem from './BoardItem';
+import BoardItem from './ListBoardItem';
 import instance from '../api/instance';
 
 const NavbarMenu = (props) => {
@@ -16,7 +16,7 @@ const NavbarMenu = (props) => {
     useEffect(() => {
         instance.get('/board/getUserBoards')
             .then(res => {
-                setData(res.data.board);
+                setData(res.data.boards);
             })
             .catch(error => console.log(error));
     });
@@ -32,6 +32,7 @@ const NavbarMenu = (props) => {
                 .catch(error => console.log(error));
         }
         setShowForm(false);
+        setNewName('')
     };
 
     const handleChange = (event) => {
@@ -75,7 +76,7 @@ const NavbarMenu = (props) => {
                 )}
                 <div className='bg-[#FFFF] w-auto h-px rounded-md mx-4 my-2 mb-4'></div>
                 {data.map(board =>
-                    <BoardItem key={board.board_id} board={board}/>
+                    <BoardItem key={board._id} board={board}/>
                 )}
             </div>
 

@@ -1,13 +1,12 @@
 import React from "react";
 import Test from "../components/Test";
-import DatePicker from "../components/DatePicker";
-
+import TodoEditor from "../components/TodoEditor";
 
 const About = () => {
   return (
     <div>
       <Test/>
-      {/* <DatePicker/> */}
+      {/* <TodoEditor/> */}
     </div>
   );
 };
