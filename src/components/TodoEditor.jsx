@@ -24,21 +24,8 @@ const TodoEditor = (props) => {
             id: "789",
             type: "b",
             text: "789-text"
-        },
-        {
-            id: "101",
-            type: "b",
-            text: "101-text"
-        }
-        ,
-        {
-            id: "102",
-            type: "b",
-            text: "102-text"
         }
     ]);
-
-    // const [disableFlipMove, setDisableFlipMove] = useState(false);
 
     const onDragEnd = (result) => {
         // dropped outside the list
@@ -66,7 +53,7 @@ const TodoEditor = (props) => {
         margin: `0 ${grid * 2}px 0 0`,
 
         // change background colour if dragging
-        background: isDragging ? "lightgreen" : "grey",
+        background: "#ECECEC",
 
         // styles we need to apply on draggables
         ...draggableStyle
@@ -80,7 +67,7 @@ const TodoEditor = (props) => {
     return (
 
         <div className='h-full w-full flex flex-col items-center bg-[#202020] overflow-auto'>
-            <div className='w-11/12 flex flex-col justify-between pt-10'>
+            <div className='w-11/12 flex flex-col justify-between pt-10 text-black'>
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="column1" direction="horizontal">
                         {(provided, snap) => (
@@ -105,6 +92,7 @@ const TodoEditor = (props) => {
                                                     snap.isDragging,
                                                     provided.draggableProps.style
                                                 )}
+                                                className='rounded-sm'
                                             >
                                                 <BoardItem it={it} />
                                             </div>
