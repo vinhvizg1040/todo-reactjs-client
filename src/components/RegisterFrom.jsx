@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import instance from '../api/instance';
 import * as Yup from 'yup';
 import registerimage from '../assets/images/register-background.jpg'
+import { useNavigate } from "react-router-dom";
 
 const RegisterSchema = Yup.object().shape({
     username: Yup.string()
@@ -18,7 +19,7 @@ const RegisterSchema = Yup.object().shape({
 });
 
 function RegisterForm() {
-
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -51,7 +52,7 @@ function RegisterForm() {
                         localStorage.setItem('username', username);
 
                         // Log in successful, redirect to another page
-                        window.location.href = '/Todo';
+                        navigate("/Todo");
                     })
                     .catch(error => console.log(error));
 

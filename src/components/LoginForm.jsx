@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import instance from '../api/instance';
 import * as Yup from 'yup';
+import { useNavigate } from "react-router-dom";
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string()
@@ -14,6 +15,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 function LoginForm() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -38,7 +40,7 @@ function LoginForm() {
                             localStorage.setItem('username', username);
                             localStorage.setItem('userId', userId);
                             // Log in successful, redirect to another page
-                            window.location.href = '/';
+                            navigate("/");
                         } else if (role === 'user') {
                             const token = response.data.token;
                             const username = response.data.username;
@@ -47,7 +49,7 @@ function LoginForm() {
                             localStorage.setItem('username', username);
                             localStorage.setItem('userId', userId);
                             // Log in successful, redirect to another page
-                            window.location.href = '/Todo';
+                            navigate("/Todo");
                         }
                     })
                     .catch(error => console.log(error));

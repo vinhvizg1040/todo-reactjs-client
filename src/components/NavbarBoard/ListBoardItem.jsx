@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import instance from '../api/instance';
+import instance from '../../api/instance';
 
 const BoardItem = (props) => {
 

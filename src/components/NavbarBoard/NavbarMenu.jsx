@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import BoardItem from './ListBoardItem';
-import instance from '../api/instance';
+import instance from '../../api/instance';
 
 const NavbarMenu = (props) => {
 
