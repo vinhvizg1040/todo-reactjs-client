@@ -54,8 +54,8 @@ const NavbarMenu = (props) => {
                         <button onClick={handleCreateClick} className='flex px-2 py-1 hover:bg-gray-500 hover:rounded-sm'>
                             {showForm ? (
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 4L4 20" stroke="white" strokeWidth="2" stroke-linecap="round" strokeLinejoin="round" />
-                                    <path d="M4 4L20 20" stroke="white" strokeWidth="2" stroke-linecap="round" strokeLinejoin="round" />
+                                    <path d="M20 4L4 20" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 4L20 20" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             ) : (
                                 <svg className='fill-white' width="12" height="12" viewBox="0 0 12 13"><path d="M 6 6 V 0.5 A 0.5 0.5 90 0 1 7 0.5 V 6 H 12.5 A 0.5 0.5 90 1 1 12.5 7 H 7 V 12.5 A 0.5 0.5 90 1 1 6 12.5 V 7 H 0.5 A 0.5 0.5 90 0 1 0.5 6 H 6 Z" fill="current" fillRule="evenodd"></path></svg>
@@ -76,7 +76,7 @@ const NavbarMenu = (props) => {
                 )}
                 <div className='bg-[#FFFF] w-auto h-px rounded-md mx-4 my-2 mb-4'></div>
                 {data.map(board =>
-                    <BoardItem key={board._id} board={board}/>
+                    <BoardItem getBoardHandle={props.getBoardHandle} key={board._id} board={board}/>
                 )}
             </div>
 

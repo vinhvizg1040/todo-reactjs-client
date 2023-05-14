@@ -6,7 +6,7 @@ const jake = {
 
 const BMO = {
   id: "2",
-  name: "BMO"
+  name: "BMO BMO BMO BMO BMO BMO BMO BMO BMO BMO BMO BMO BMO BMO"
 
 };
 

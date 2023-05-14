@@ -7,6 +7,9 @@ module.exports = {
     extend: {},
     minHeight: {
       '1': '1px',
+    },
+    minWidth: {
+      '64': '16rem',
     }
   },
   plugins: [],
