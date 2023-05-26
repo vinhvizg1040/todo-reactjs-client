@@ -1,11 +1,11 @@
 import React from "react";
-import LoginForm from '../components/LoginForm'
+import LoginPage from '../components/Login/Login'
 // import Test from '../components/Test'
 
 const Login = () => {
   return (
     <div>
-      <LoginForm/>
+      <LoginPage/>
       {/* <Test/> */}
     </div>
   );

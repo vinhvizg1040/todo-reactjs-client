@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Test = () => {
-    
+
+export default function Test() {
+
     return (
-        <>
+        <div>
            
-        </>
-    )
-};
-
-
-
-export default Test
+        </div>
+    );
+}
