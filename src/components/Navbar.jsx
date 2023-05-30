@@ -1,7 +1,21 @@
-import React from 'react';
-
+import React, { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from "../redux/actions/auth";
 
 const Navbar = (props) => {
+
+    const dispatch = useDispatch();
+    const [isOpen, setOpen] = useState(false);
+    const handleDropDown = () => {
+        setOpen(!isOpen);
+    };
+
+
+    const logOut = useCallback(() => {
+        dispatch(logout());
+      }, [dispatch]);
+    
+
     return (
         <>
             <div className='flex h-12 justify-between bg-[#282828] shadow-sm shadow-zinc-800'>
@@ -57,13 +71,28 @@ const Navbar = (props) => {
                     </div>
 
                     <div className='px-4'>
-                        <button className='hover:bg-gray-500'>
+                        <button onClick={handleDropDown} className='hover:bg-gray-500'>
                             <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd"
                                     d="M22.6667 9.33332C22.6667 5.65142 19.6819 2.66666 16 2.66666C12.3181 2.66666 9.33332 5.65142 9.33332 9.33332C9.33332 13.0152 12.3181 16 16 16H14.6667C8.03924 16 2.66666 21.3726 2.66666 28C2.66666 28.7364 3.26361 29.3333 3.99999 29.3333H28C28.7364 29.3333 29.3333 28.7364 29.3333 28C29.3333 21.3726 23.9607 16 17.3333 16H16C17.7681 16 19.4638 15.2976 20.714 14.0474C21.9643 12.7971 22.6667 11.1014 22.6667 9.33332ZM14.6667 18.6667C10.0262 18.6655 6.08959 22.0737 5.42666 26.6667H26.5733C25.9104 22.0737 21.9738 18.6655 17.3333 18.6667H14.6667ZM12 9.33332C12 11.5425 13.7909 13.3333 16 13.3333C17.0609 13.3333 18.0783 12.9119 18.8284 12.1618C19.5786 11.4116 20 10.3942 20 9.33332C20 7.12418 18.2091 5.33332 16 5.33332C13.7909 5.33332 12 7.12418 12 9.33332Z"
                                     fill="white" />
                             </svg>
                         </button>
+                        <div
+                            className={`bg-[#282828] flex-row justify-between rounded-md -ml-20 z-10 w-28 h-20 text-sm ${isOpen ? "absolute" : "hidden"
+                                }`}
+                        >
+                            <div className="px-8 py-2 hover:bg-gray-600 rounded-sm">
+                                <button>
+                                    Profile
+                                </button>
+                            </div>
+                            <div className="px-8 py-2 hover:bg-gray-600 rounded-sm">
+                                <button onClick={logOut}>
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
