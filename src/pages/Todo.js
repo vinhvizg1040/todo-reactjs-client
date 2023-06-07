@@ -3,27 +3,16 @@ import Navbar from "../components/Navbar";
 import NavbarMenu from '../components/NavbarBoard/NavbarMenu';
 import TodoEditor from "../components/TodoEditor";
 import instance from '../api/instance';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 function Todo() {
   const [isShown, setIsShown] = useState(true);
   const [toShown, setToShown] = useState(false);
   const [boardId, setBoardId] = useState(null);
 
-  const { user: currentUser } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
-
   useEffect(() => {
     getBoardId();
   }, [])
 
-  useEffect(() => {
-    if (!currentUser) {
-      navigate("/login");
-    }
-  })
 
   async function getBoardId() {
     await instance.get('/board/getFirstBoard')

@@ -14,13 +14,13 @@ const HomePage = () => {
                             <li><a href="/#" className="text-white hover:text-gray-300">Contact</a></li>
                             <li>
                                 <Link to="/Register">
-                                    <p className="text-white hover:text-gray-300">Sign Up</p>
+                                    <a href="/#" className="text-white hover:text-gray-300">Sign Up</a>
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/Login">
-                                    <p className="bg-white text-gray-900 rounded-md px-4 py-2 text-sm font-medium hover:bg-gray-200">Log
-                                        In</p>
+                                    <a href="/#" className="bg-white text-gray-900 rounded-md px-4 py-2 text-sm font-medium hover:bg-gray-200">Log
+                                        In</a>
                                 </Link>
                             </li>
                         </ul>

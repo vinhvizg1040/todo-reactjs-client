@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import instance from '../../api/instance';
 import * as Yup from 'yup';
-import { Navigate, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/actions/auth";
+import { useNavigate } from "react-router-dom";
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string()
@@ -24,44 +22,42 @@ function LoginForm() {
         username: '',
         password: '',
     });
-
+    
     const [formErrors, setFormErrors] = useState({});
-
-    const { isLoggedIn } = useSelector(state => state.auth);
-
-    const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // localStorage.clear();
+        localStorage.clear();
         LoginSchema.validate(formData, { abortEarly: false })
-            .then(
-                // async () => {
-                //     // Send data to server
-                //     await instance.post('/users/login', formData)
-                //         .then(response => {
-                //             const role = response.data.role;
-                //             if (role === 'admin') {
-                //                 localStorage.setItem('user', { username: response.data.username, userId: response.data.userId, token: response.data.token, role: response.data.role });
-                //                 // Log in successful, redirect to another page
-                //                 navigate("/");
-                //                 window.location.reload();
-                //             } else if (role === 'user') {
-                //                 localStorage.setItem('user', { username: response.data.username, userId: response.data.userId, token: response.data.token, role: response.data.role });
-                //                 // Log in successful, redirect to another page
-                //                 navigate("/Todo", { replace: true });
-                //                 window.location.reload();
-                //             }
-                //             console.log(response.data);
-                //         })
-                //         .catch(error => console.log(error));
-                // }
-                dispatch(login(formData.username, formData.password))
-                    .then(() => {
-                        navigate("/Todo");
-                        window.location.reload();
-                    }).catch(error => console.log(error))
-            )
+            .then(async () => {
+                // Send data to server
+                await instance.post('/users/login', formData)
+                    .then(response => {
+                        const role = response.data.role;
+                        if (role === 'admin') {
+                            const token = response.data.token;
+                            const username = response.data.username;
+                            const userId = response.data.userId;
+                            localStorage.setItem('token', token);
+                            localStorage.setItem('username', username);
+                            localStorage.setItem('userId', userId);
+                            // Log in successful, redirect to another page
+                            navigate("/");
+                            window.location.reload();
+                        } else if (role === 'user') {
+                            const token = response.data.token;
+                            const username = response.data.username;
+                            const userId = response.data.userId;
+                            localStorage.setItem('token', token);
+                            localStorage.setItem('username', username);
+                            localStorage.setItem('userId', userId);
+                            // Log in successful, redirect to another page
+                            navigate("/Todo", { replace: true });
+                            window.location.reload();
+                        }
+                    })
+                    .catch(error => console.log(error));
+            })
             .catch((errors) => {
                 // Form is invalid
                 console.log(errors);
@@ -80,10 +76,7 @@ function LoginForm() {
         setFormData({ ...formData, [name]: value });
     };
 
-    if (isLoggedIn) {
-        return <Navigate to="/" />;
-    }
-
+    
     return (
         <>
             <form className="space-y-8" onSubmit={handleSubmit}>
