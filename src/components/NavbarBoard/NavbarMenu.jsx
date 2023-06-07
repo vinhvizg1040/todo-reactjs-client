@@ -14,19 +14,15 @@ const NavbarMenu = (props) => {
     };
 
     useEffect(() => {
-        getBoards();
-    },[]);
-    
-    const getBoards = async () => {
-        await instance.get('/board/getUserBoards')
+        instance.get('/board/getUserBoards')
             .then(res => {
                 setData(res.data.boards);
             })
             .catch(error => console.log(error));
-    }
+    });
 
     const onCreateSubmit = async () => {
-        if (newName.trim() !== "") {
+        if (newName !== null) {
             await instance.post('/board/createBoards', {
                 name: newName
             })
@@ -46,8 +42,8 @@ const NavbarMenu = (props) => {
 
     return (
         <>
-            <div className={`h-full transition-all pt-4 duration-500 ease-linear max-w-fit flex-col items-center text-[#FFFFFF] not-italic bg-[#242424] ${props.hidden}`}>
-                <div className='flex w-72 pt-5 pb-1 px-6'>
+            <div className={`h-full transition-all pt-4 duration-500 ease-linear max-w-xs flex-col items-center text-[#FFFFFF] not-italic bg-[#242424] ${props.hidden}`}>
+                <div className='flex pt-5 pb-1 px-6'>
                     <div className='w-full items-start'>
                         <p className='leading-5 pl-2 font-bold'>Your Boards</p>
                     </div>
@@ -69,7 +65,7 @@ const NavbarMenu = (props) => {
                 </div>
                 {showForm && (
                     <div className='flex py-2 px-6'>
-                        <input className='bg-[#363636] w-full' type="text" value={newName} onChange={handleChange} />
+                        <input className='bg-[#363636] w-full' type="text" value={newName} onChange={handleChange}/>
                         <button onClick={onCreateSubmit} className='mx-1 hover:bg-gray-500 hover:rounded-sm' type='submit'>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9 10L12.2581 12.4436C12.6766 12.7574 13.2662 12.6957 13.6107 12.3021L20 5" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -80,7 +76,7 @@ const NavbarMenu = (props) => {
                 )}
                 <div className='bg-[#FFFF] w-auto h-px rounded-md mx-4 my-2 mb-4'></div>
                 {data.map(board =>
-                    <BoardItem getBoardHandle={props.getBoardHandle} key={board._id} board={board} />
+                    <BoardItem getBoardHandle={props.getBoardHandle} key={board._id} board={board}/>
                 )}
             </div>
 

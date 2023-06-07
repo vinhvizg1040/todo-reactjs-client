@@ -5,14 +5,16 @@ import TodoEditor from "../components/TodoEditor";
 import instance from '../api/instance';
 
 function Todo() {
+
   const [isShown, setIsShown] = useState(true);
   const [toShown, setToShown] = useState(false);
   const [boardId, setBoardId] = useState(null);
 
   useEffect(() => {
-    getBoardId();
-  }, [])
-
+    if (!boardId) {
+      getBoardId();
+    }
+  })
 
   async function getBoardId() {
     await instance.get('/board/getFirstBoard')
@@ -23,6 +25,7 @@ function Todo() {
         console.log(error)
       });
   }
+ 
   const navHandle = event => {
     // 👇️ toggle shown state
     setIsShown(current => !current);
