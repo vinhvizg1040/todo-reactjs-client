@@ -112,19 +112,18 @@ const Board = ({
     if (result.type === 'COLUMN') {
       const reorderedorder = reorder(ordered, source.index, destination.index);
 
-      setOrdered(reorderedorder);
-      // console.log(reorderedorder);
+      // setOrdered(reorderedorder);
 
-      // instance.post('/board/updateListOfBoardPosition', {
-      //   listIds: reorderedorder,
-      //   board_id: initial
-      // })
-      //   .then(res => {
-      //     // setData(res.data.lists);
-      //     // convertData(data)
-      //     console.log(res.data);
-      //   })
-      //   .catch(error => console.log(error));
+      instance.post('/board/updateListOfBoardPosition', {
+        listIds: reorderedorder,
+        board_id: initial
+      })
+        .then(res => {
+          // setData(res.data.lists);
+          // convertData(data)
+          // console.log(res.data);
+        })
+        .catch(error => console.log(error));
 
       return;
     }
@@ -137,7 +136,7 @@ const Board = ({
     });
 
     setColumns(data.quoteMap);
-
+    //update listOfCardsPosition
   };
 
 

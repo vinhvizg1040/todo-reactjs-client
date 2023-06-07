@@ -41,6 +41,7 @@ function LoginForm() {
                             localStorage.setItem('userId', userId);
                             // Log in successful, redirect to another page
                             navigate("/");
+                            window.location.reload();
                         } else if (role === 'user') {
                             const token = response.data.token;
                             const username = response.data.username;
@@ -50,6 +51,7 @@ function LoginForm() {
                             localStorage.setItem('userId', userId);
                             // Log in successful, redirect to another page
                             navigate("/Todo");
+                            window.location.reload();
                         }
                     })
                     .catch(error => console.log(error));
