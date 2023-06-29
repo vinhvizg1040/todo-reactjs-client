@@ -24,7 +24,7 @@ const QuoteItem = (props) => {
       data-testid={quote._id}
       data-index={index}
     >
-        <div className='bg-slate-50 text-black w-full mb-3 py-1 px-2 rounded-sm cursor-pointer flex justify-between drop-shadow-md group group-hover:stroke-white hover:bg-neutral-100'>
+        <div className='bg-slate-50 text-black w-full h-8 mb-3 py-2 px-3 rounded-sm cursor-pointer flex justify-between drop-shadow-md group group-hover:stroke-white hover:bg-neutral-100'>
           <div className='order-first text-sm'>{quote.name}</div>
           <button className='order-last h-6 w-6 hidden group-hover:block self-center hover:bg-gray-300 hover:rounded-md'>
             <svg className='self-center' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

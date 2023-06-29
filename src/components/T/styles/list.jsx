@@ -11,8 +11,7 @@ const QuoteList = (props) => {
     quotes,
     useClone,
   } = props;
-  // console.log(quotes.map((quote, index) =>(console.log(quote._id))));
-  // console.log(listId);
+
   return (
     <Droppable
       droppableId={listId}
@@ -34,7 +33,7 @@ const QuoteList = (props) => {
         <div
           {...dropProvided.droppableProps}
         >
-          <div className='overflow-x-hidden overflow-y-auto max-h-60 min-h-1' ref={dropProvided.innerRef}>
+          <div className='overflow-x-hidden overflow-y-auto min-h-1' ref={dropProvided.innerRef}>
             {quotes.map((quote, index) => (
               <Draggable key={quote._id} draggableId={quote._id} index={index}>
                 {(dragProvided, dragSnapshot) => (
@@ -48,10 +47,11 @@ const QuoteList = (props) => {
             ))
             }
             {dropProvided.placeholder}
+            <div className='bg-white text-black w-full mb-3 py-1 pl-2 px-1 rounded-sm cursor-pointer flex justify-between drop-shadow-md group group-hover:stroke-white hover:bg-neutral-100'>
+              <div className='text-sm'>+</div>
+            </div>
           </div>
-          <div className='bg-white text-black w-full mb-3 py-1 pl-2 px-1 rounded-sm cursor-pointer flex justify-between drop-shadow-md group group-hover:stroke-white hover:bg-neutral-100'>
-            <div className='text-sm'>+</div>
-          </div>
+
         </div>
       )}
     </Droppable>

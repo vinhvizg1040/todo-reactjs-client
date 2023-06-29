@@ -14,7 +14,7 @@ const Column = (props) => {
   return (
     <Draggable draggableId={key} index={index}>
       {(provided, snapshot) => (
-        <div className="border-2 bg-gray-200 m-2 p-2 w-64 min-w-64 rounded-sm h-full flex-col" ref={provided.innerRef} {...provided.draggableProps}>
+        <div className="border-2 bg-gray-300 m-2 p-2 w-64 min-w-64 rounded-sm h-full flex-col" ref={provided.innerRef} {...provided.draggableProps}>
           <div className="text-base py-1 px-1 flex justify-between"
             {...provided.dragHandleProps}
           >

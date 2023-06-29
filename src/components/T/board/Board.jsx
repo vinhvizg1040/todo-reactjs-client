@@ -13,29 +13,14 @@ const Board = ({
   containerHeight,
 }) => {
 
-  // const [columns, setColumns] = useState(initial);
-  // const [ordered, setOrdered] = useState(Object.keys(initial));
-
-
-  // const [data, setData] = useState([]);
-  // const [columns, setColumns] = useState([]);
-  // const [ordered, setOrdered] = useState([]);
-
   const [data, setData] = useState([]);
-  const [columns, setColumns] = useState(data.reduce((lists, card) => {
-    let { _id, cards } = card;
-    lists[_id] = cards;
-
-    return lists;
-  }, {}));
-  const [ordered, setOrdered] = useState(data.map(({ _id }) => _id));
+  const [columns, setColumns] = useState([]);
+  const [ordered, setOrdered] = useState([]);
 
   useEffect(() => {
     getBoard();
-  })
-
-  // convertData(data)
-  // console.log(initial);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initial])
 
   async function getBoard() {
     if (initial) {
@@ -60,13 +45,6 @@ const Board = ({
 
       return lists;
     }, {}));
-
-    // console.log(data.reduce((acc, user) => {
-    //   let { _id, name, cards } = user;
-    //   acc[_id] = cards;
-
-    //   return acc;
-    // }, {}));
   }
 
   const onDragEnd = async (result) => {
@@ -112,17 +90,12 @@ const Board = ({
     if (result.type === 'COLUMN') {
       const reorderedorder = reorder(ordered, source.index, destination.index);
 
-      // setOrdered(reorderedorder);
+      setOrdered(reorderedorder);
 
-      instance.post('/board/updateListOfBoardPosition', {
+      await instance.post('/board/updateListOfBoardPosition', {
         listIds: reorderedorder,
         board_id: initial
       })
-        .then(res => {
-          // setData(res.data.lists);
-          // convertData(data)
-          // console.log(res.data);
-        })
         .catch(error => console.log(error));
 
       return;
@@ -135,8 +108,15 @@ const Board = ({
       destination,
     });
 
+    console.log(columns);
+    console.log(data.quoteMap);
     setColumns(data.quoteMap);
-    //update listOfCardsPosition
+
+    await instance.post('/list/UpdateListOfCardsPosition', {
+      listCards: data.quoteMap,
+      board_id: initial
+    })
+      .catch(error => console.log(error));
   };
 
 
@@ -166,7 +146,8 @@ const Board = ({
                   id={key}
                   index={index}
                   title={data.find(id => id._id === key).name}
-                  quotes={data.find(id => id._id === key).cards}
+                  // quotes={data.find(id => id._id === key).cards}
+                  quotes={columns[key]}
                   isCombineEnabled={isCombineEnabled}
                   useClone={useClone}
                 />
