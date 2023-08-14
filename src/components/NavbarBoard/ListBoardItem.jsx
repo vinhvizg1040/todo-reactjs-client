@@ -47,7 +47,8 @@ const BoardItem = (props) => {
                     <button className='flex px-2 py-1 hover:bg-gray-500 w-full rounded-md' onClick={() => props.getBoardHandle(props.board._id)}>
                         <p className='leading-5 pl-2 font-extralight'>{props.board.name}</p>
                     </button>
-                )}
+                )
+            }
 
             {editing ?
                 (

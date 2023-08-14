@@ -33,7 +33,7 @@ const QuoteList = (props) => {
         <div
           {...dropProvided.droppableProps}
         >
-          <div className='overflow-x-hidden overflow-y-auto min-h-1' ref={dropProvided.innerRef}>
+          <div className='overflow-x-hidden overflow-y-auto min-h-1 pt-2' ref={dropProvided.innerRef}>
             {quotes.map((quote, index) => (
               <Draggable key={quote._id} draggableId={quote._id} index={index}>
                 {(dragProvided, dragSnapshot) => (

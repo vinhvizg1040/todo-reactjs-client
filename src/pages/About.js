@@ -1,7 +1,7 @@
 import React from "react";
 import Test from "../components/Test";
 import TodoEditor from "../components/TodoEditor";
-import Board from "../components/T/board/Board";
+import Board from "../components/board/Board";
 
 const About = () => {
 

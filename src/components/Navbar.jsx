@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -8,10 +8,11 @@ const Navbar = (props) => {
     const handleDropDown = () => {
         setOpen(!isOpen);
     };
-    const logOut = useCallback(() => {
+    const logOut = () => {
         localStorage.clear();
         navigate("/");
-    }, []);
+    };
+
     return (
         <>
             <div className='flex h-12 justify-between bg-[#282828] shadow-sm shadow-zinc-800'>
